@@ -1,59 +1,16 @@
 
-const menuLinks = document.querySelectorAll('.menu a[href^="#"]');
+document.querySelector(".bars__menu").addEventListener("click", () => {
 
-/*SELECCIONA EL ITEM DEL MENU MIENTRAS SE HACE SCROLL*/
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        const id = entry.target.getAttribute("id");
-        alert(id);
-        const menuLink = document.querySelector(`.menu a[href="#${id}"]`)
-        if(entry.isIntersecting){
-            menuLink.classList.add("active");
-        }
-    });
-});
-
-/*ACTIVA E INACTIVA EL ITEM DEL MENU AL HACER CLICK*/
-menuLinks.forEach(menuLink => {
-    menuLink.addEventListener("click", function(){
-        let activo = document.querySelector(".active");
-        activo.classList.remove("active");
-        menuLink.classList.add("active");
-    })
+    var line1__bars = document.querySelector(".line1__bars-menu");
+    var line2__bars = document.querySelector(".line2__bars-menu");
+    var line3__bars = document.querySelector(".line3__bars-menu");
+    var container__menu = document.querySelector(".menu");
     
-    const hash = menuLink.getAttribute("href");
-   
-    if(hash != "#"){
-        const target = document.querySelector(`${hash}`);
-        if(target){
-            observer.observe(target);
-        }
-    }
-})
+        line1__bars.classList.toggle("activeline1__bars-menu");
+        line2__bars.classList.toggle("activeline2__bars-menu");
+        line3__bars.classList.toggle("activeline3__bars-menu");
+    
+        container__menu.classList.toggle("menu__active");
+        
+    });
 
- /* $(function(){
-
-    $('a[href*="#"]').click(function() {
-        //eliminoActive();   
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
-        && location.hostname == this.hostname) {
-            
-            var $target = $(this.hash);
-            
-            $target = $target.length && $target || $('[name=' + this.hash.slice(1) +']');
-
-            if ($target.length) {
-
-                var targetOffset = $target.offset().top;
-                $('html,body').animate({scrollTop: targetOffset}, 1000);
-
-                return false;
-
-           }
-
-      }
-
-
-  });
-
-});*/
